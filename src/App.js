@@ -1,5 +1,6 @@
 import './App.css';
-import { Routes, Route,  BrowserRouter as Router, useRoutes  } from "react-router-dom";
+import { useState } from "react";
+import { Routes, Route, BrowserRouter as Router, useRoutes } from "react-router-dom";
 import Sidebar from './components/menu/Sidebar';
 import Topbar from './components/menu/Topbar';
 import Campaign from './components/pages/Campaign';
@@ -9,15 +10,21 @@ import Logout from './components/pages/Logout';
 import Setting from './components/pages/Setting';
 import Statistic from './components/pages/Statistic';
 import Socialmedia from './components/menu/Socialmedia';
-
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { ColorModeContext, useMode } from "./components/theme";
 
 
 function App() {
+  const [theme, colorMode] = useMode();
+  const [isSidebar, setIsSidebar] = useState(true);
   return (
-    <div className="app">
-          <Sidebar />
+    <ColorModeContext.Provider value={colorMode}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <div className="app">
+          <Sidebar isSidebar={isSidebar} />
           <main className="content">
-            <Topbar />
+            <Topbar setIsSidebar={setIsSidebar} />
             <Socialmedia />
             <Routes>
               <Route path="/" element={<Dashboard />} />
@@ -29,6 +36,8 @@ function App() {
             </Routes>
           </main>
         </div>
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   );
 }
 

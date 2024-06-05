@@ -1,12 +1,17 @@
 import React from 'react';
+import './Menu.css';
+import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import { tokens } from "../theme";
 
 function Socialmedia() {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   const socialMediaLinks = [
-    { name: 'Facebook', url: '/analytics/facebook' },
-    { name: 'Twitter', url: '/analytics/twitter' },
-    { name: 'Instagram', url: '/analytics/instagram' },
-    { name: 'LinkedIn', url: '/analytics/linkedin' },
-    { name: 'YouTube', url: '/analytics/youtube' },
+    { name: 'Facebook', url: '/statistics' },
+    { name: 'Twitter', url: '/statistics' },
+    { name: 'Instagram', url: '/statistics' },
+    { name: 'LinkedIn', url: '/statistics' },
+    { name: 'YouTube', url: '/statistics' },
   ];
 
   return (

@@ -1,65 +1,54 @@
-// src/components/Topbar.jsx
-import React from 'react';
-import { FaSearch, FaAdjust, FaCog, FaUser } from 'react-icons/fa';
-import { useNavigate } from 'react-router-dom';
-
-const items = [
-  { id: 1, name: 'search', icon: <FaSearch />, route: '/search' },
-  { id: 2, name: 'theme', icon: <FaAdjust />, route: '/theme' },
-  { id: 3, name: 'settings', icon: <FaCog />, route: '/settings' },
-  { id: 4, name: 'profile', icon: <FaUser />, route: '/profile' },
-];
+import { Box, IconButton, useTheme } from "@mui/material";
+import { useContext } from "react";
+import { ColorModeContext, tokens } from "../theme";
+import InputBase from "@mui/material/InputBase";
+import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
+import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import SearchIcon from "@mui/icons-material/Search";
 
 const Topbar = () => {
-  const navigate = useNavigate();
-
-  const handleNavigation = (route) => {
-    navigate(route);
-  };
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const colorMode = useContext(ColorModeContext);
 
   return (
-    <div style={styles.topbar}>
-      <div style={styles.searchContainer}>
-        <FaSearch />
-        <input type="text" placeholder="Search..." style={styles.searchInput} />
-      </div>
-      <div style={styles.iconsContainer}>
-        {items.slice(1).map((item) => (
-          <div key={item.id} style={styles.icon} onClick={() => handleNavigation(item.route)}>
-            {item.icon}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
+    <Box display="flex" justifyContent="space-between" p={2}>
+      {/* SEARCH BAR */}
+      <Box
+        display="flex"
+        backgroundColor={colors.primary[400]}
+        borderRadius="3px"
+      >
+        <InputBase sx={{ ml: 2, flex: 1 }} placeholder="Search" />
+        <IconButton type="button" sx={{ p: 1 }}>
+          <SearchIcon />
+        </IconButton>
+      </Box>
 
-const styles = {
-  topbar: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '10px 20px',
-    backgroundColor: '#282c34',
-    color: '#fff',
-  },
-  searchContainer: {
-    display: 'flex',
-    alignItems: 'center',
-  },
-  searchInput: {
-    marginLeft: '10px',
-    padding: '5px',
-    border: 'none',
-    borderRadius: '5px',
-  },
-  iconsContainer: {
-    display: 'flex',
-    gap: '20px',
-  },
-  icon: {
-    cursor: 'pointer',
-  },
+      {/* ICONS */}
+      <Box display="flex">
+        <IconButton onClick={colorMode.toggleColorMode}>
+          {theme.palette.mode === "light" ? (
+            <DarkModeOutlinedIcon /> 
+          ) : (
+            <LightModeOutlinedIcon />  
+          )}
+        </IconButton>
+        <IconButton>
+          <NotificationsOutlinedIcon />
+        </IconButton>
+        <IconButton>
+          <SettingsOutlinedIcon />
+        </IconButton>
+        <IconButton>
+          <PersonOutlinedIcon />
+        </IconButton>
+      </Box>
+    </Box>
+  );
 };
 
 export default Topbar;

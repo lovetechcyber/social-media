@@ -1,20 +1,121 @@
-// src/components/BarChart.js
-import React from 'react';
-import { Bar } from 'react-chartjs-2';
+import React, { useEffect, useState } from 'react';
+import { ResponsiveBar } from '@nivo/bar';
+import { useTheme } from '@mui/material';
+import { tokens } from '../theme';
+import axios from 'axios';
 
-const BarChart = ({ data }) => {
-  const chartData = {
-    labels: data.labels,
-    datasets: [
-      {
-        label: 'Bar Chart',
-        data: data.values,
-        backgroundColor: 'rgba(75,192,192,0.4)',
-      },
-    ],
-  };
+const BarChart = ({ isDashboard = false }) => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const [data, setData] = useState([]);
 
-  return <Bar data={chartData} />;
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:5001/barData');
+        setData(response.data);
+      } catch (error) {
+        console.error("Error fetching line data", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  return (
+    <ResponsiveBar
+      data={data}
+      keys={["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]}
+      indexBy="category"
+      margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+      padding={0.3}
+      valueScale={{ type: 'linear' }}
+      indexScale={{ type: 'band', round: true }}
+      colors={{ scheme: 'nivo' }}
+      theme={{
+        axis: {
+          domain: {
+            line: {
+              stroke: colors.grey[100],
+            },
+          },
+          legend: {
+            text: {
+              fill: colors.grey[100],
+            },
+          },
+          ticks: {
+            line: {
+              stroke: colors.grey[100],
+              strokeWidth: 1,
+            },
+            text: {
+              fill: colors.grey[100],
+            },
+          },
+        },
+        legends: {
+          text: {
+            fill: colors.grey[100],
+          },
+        },
+        tooltip: {
+          container: {
+            color: colors.primary[500],
+          },
+        },
+      }}
+      axisTop={null}
+      axisRight={null}
+      axisBottom={{
+        tickSize: 5,
+        tickPadding: 5,
+        tickRotation: 0,
+        legend: isDashboard ? undefined : "Month",
+        legendPosition: 'middle',
+        legendOffset: 32,
+      }}
+      axisLeft={{
+        tickSize: 5,
+        tickPadding: 5,
+        tickRotation: 0,
+        legend: isDashboard ? undefined : "Count",
+        legendPosition: 'middle',
+        legendOffset: -40,
+      }}
+      labelSkipWidth={12}
+      labelSkipHeight={12}
+      labelTextColor={{ from: 'color', modifiers: [['darker', 1.6]] }}
+      legends={[
+        {
+          dataFrom: 'keys',
+          anchor: 'bottom-right',
+          direction: 'column',
+          justify: false,
+          translateX: 120,
+          translateY: 0,
+          itemsSpacing: 2,
+          itemWidth: 100,
+          itemHeight: 20,
+          itemDirection: 'left-to-right',
+          itemOpacity: 0.85,
+          symbolSize: 20,
+          effects: [
+            {
+              on: 'hover',
+              style: {
+                itemOpacity: 1,
+              },
+            },
+          ],
+        },
+      ]}
+      role="application"
+      ariaLabel="Nivo bar chart demo"
+      barAriaLabel={function (e) {
+        return e.id + ": " + e.formattedValue + " in month: " + e.indexValue;
+      }}
+    />
+  );
 };
 
 export default BarChart;
