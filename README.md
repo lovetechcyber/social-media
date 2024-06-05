@@ -1,3 +1,8 @@
+## THE PROJECT TOPIC IS `SOCIAL MEDIAL ANALYTICAL DASHBOARD`
+
+## Social Media Dashboard to monitor social media activity across multiple platforms, displaying metrics like follower count, engagement, and top posts. Use APIs from platforms like Twitter, Facebook, and Instagram.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -5,6 +10,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 In the project directory, you can run:
+
+## You will need to install the following
+##  `npm i react-pro-sidebar@0.7.1 `
+## `npm list react-pro-sidebar  `
+## `npm install @nivo/geo   `
+## `npm install -g json-server`
+## `npx json-server --watch db.json --port 5001`
 
 ### `npm start`
 
