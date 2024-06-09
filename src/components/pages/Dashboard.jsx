@@ -7,7 +7,6 @@ import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import TrafficIcon from "@mui/icons-material/Traffic";
 import LineChart from "../charts/LineChart";
-import PieChart from "../charts/PieChart";
 import GeographyChart from "../charts/GeoChart";
 import BarChart from "../charts/BarChart";
 import StatBox from "../StatBox";
