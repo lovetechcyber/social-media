@@ -3,9 +3,9 @@
 ## Social Media Dashboard to monitor social media activity across multiple platforms, displaying metrics like follower count, engagement, and top posts. Use APIs from platforms like Twitter, Facebook, and Instagram.
 
 
-# Getting Started with Create React App
+# Below is the link to the live web app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+ [Project web link](https://socialmedia-analytical-dashboard.netlify.app/).
 
 ## Available Scripts
 
