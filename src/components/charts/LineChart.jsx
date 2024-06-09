@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { ResponsiveLine } from '@nivo/line';
 import { useTheme } from '@mui/material';
 import { tokens } from '../theme';
-import axios from 'axios';
+//import axios from 'axios';
+import { mockLineData} from '../charts/mockData';
 
 const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
   const theme = useTheme();
@@ -10,7 +11,7 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+/*     const fetchData = async () => {
       try {
         const response = await axios.get('http://localhost:5001/lineData');
         setData(response.data);
@@ -18,7 +19,8 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
         console.error("Error fetching line data", error);
       }
     };
-    fetchData();
+    fetchData(); */
+    setData(mockLineData);
   }, []);
 
   return (

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { ResponsivePie } from '@nivo/pie';
-import axios from 'axios';
+//import axios from 'axios';
 import { useTheme } from '@mui/material';
+import { mockPieData} from '../charts/mockData';
+
 
 const PieChart = () => {
   const theme = useTheme();
@@ -9,7 +11,7 @@ const PieChart = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+/*     const fetchData = async () => {
       try {
         const response = await axios.get('http://localhost:5001/pieData');
         setData(response.data);
@@ -17,7 +19,8 @@ const PieChart = () => {
         console.error("Error fetching pie data", error);
       }
     };
-    fetchData();
+    fetchData(); */
+    setData(mockPieData);
   }, []);
 
   return (

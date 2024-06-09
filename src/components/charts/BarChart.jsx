@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { ResponsiveBar } from '@nivo/bar';
 import { useTheme } from '@mui/material';
 import { tokens } from '../theme';
-import axios from 'axios';
+//import axios from 'axios';
+import { mockBarData } from '../charts/mockData';
 
 const BarChart = ({ isDashboard = false }) => {
   const theme = useTheme();
@@ -10,15 +11,16 @@ const BarChart = ({ isDashboard = false }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+/*     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5001/barData');
+        const response = await axios.get('');
         setData(response.data);
       } catch (error) {
         console.error("Error fetching line data", error);
       }
     };
-    fetchData();
+    fetchData(); */
+    setData(mockBarData);
   }, []);
 
   return (

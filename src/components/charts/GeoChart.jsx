@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { ResponsiveChoropleth } from '@nivo/geo';
-import axios from 'axios';
+//import axios from 'axios';
 import { useTheme } from '@mui/material';
 import countries from './world_countries.json'; 
+import { mockGeoData} from '../charts/mockData';
 
 const GeoChart = () => {
   const theme = useTheme();
@@ -10,15 +11,16 @@ const GeoChart = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
+/*     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:5001/geoData');
+        const response = await axios.get('');
         setData(response.data);
       } catch (error) {
         console.error("Error fetching geo data", error);
       }
     };
-    fetchData();
+    fetchData(); */
+    setData(mockGeoData);
   }, []);
 
   return (
