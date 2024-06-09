@@ -3,7 +3,6 @@ import { tokens } from "../theme";
 import { mockTransactions } from "../data/mockData";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import LineChart from "../charts/LineChart";
-import PieChart from "../charts/PieChart";
 import GeographyChart from "../charts/GeoChart";
 import BarChart from "../charts/BarChart";
 

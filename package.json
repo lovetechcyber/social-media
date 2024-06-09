@@ -19,8 +19,8 @@
     "@nivo/axes": "0.80.0",
     "@nivo/bar": "0.80.0",
     "@nivo/core": "0.80.0",
-    "@nivo/line": "0.80.0",
     "@nivo/geo": "0.80.0",
+    "@nivo/line": "0.80.0",
     "@nivo/pie": "0.80.0",
     "@reduxjs/toolkit": "^1.8.5",
     "@testing-library/jest-dom": "^5.17.0",
@@ -64,5 +64,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+  },
+  "rules": {
+    "no-unused-vars": "warn"
   }
+  
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import PieChart from '../charts/PieChart';
-import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import { tokens } from "../theme";
 import GeographyChart from "../charts/GeoChart";
 
